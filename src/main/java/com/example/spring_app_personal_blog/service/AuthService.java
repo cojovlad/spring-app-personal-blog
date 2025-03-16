@@ -1,4 +1,4 @@
 package com.example.spring_app_personal_blog.service;
 
-public class AuthService {
+public interface AuthService {
 }
