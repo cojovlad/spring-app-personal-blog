@@ -1,4 +1,18 @@
 # spring-app-personal-blog
-A personal blog application built with Spring Boot, featuring a guest section for viewing published articles and an admin section for managing content.
-Guests can browse articles with publication dates, while the admin can add, edit, and delete posts via a secure dashboard.
-The app uses Spring Security, Spring Data JPA, and Thymeleaf.
+
+## Overview
+A personal blog application built with **Spring Boot**. It features:
+- A **Guest Section** where visitors can view published articles.
+- An **Admin Section** that allows admins to manage content by adding, editing, or deleting articles.
+
+## Features
+- **Guest Section**: Browse a list of articles and view article details.
+- **Admin Section**: Manage articles with the ability to add, edit, and delete posts.
+- **Authentication**: Basic authentication for the admin section, ensuring that only the admin can make changes.
+
+## Technologies Used
+- **Backend**: Spring Boot
+- **Frontend**: Thymeleaf (for HTML templating)
+- **Security**: Spring Security (for basic authentication)
+- **Database**: MySQL (using Spring Data JPA)
+- **Development Tools**: Lombok (for reducing boilerplate code)
