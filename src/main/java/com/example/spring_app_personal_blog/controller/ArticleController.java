@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/articles")
-public class GuestController {
+public class ArticleController {
 
     private final ArticleService articleService;
 
+    @Autowired
+    public ArticleController(ArticleService articleServiceInjection) {
+        articleService = articleServiceInjection;
+    }
+
     @GetMapping
     public ResponseEntity<List<Article>> getAllArticles() {
-        List<Article> articles = articleService.getAllArticles();
-        return ResponseEntity.ok(articles);
+        return ResponseEntity.ok(articleService.getAllArticles());
     }
 
     @GetMapping("/{id}")
-    public String viewArticle(@PathVariable Long id, Model model) {
-        Article article = articleService.getArticleById(id)
-                .orElseThrow(() -> new RuntimeException("Article not found"));
-        model.addAttribute("article", article);
-        return "article";
+    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
+        return ResponseEntity.of(articleService.getArticleById(id));
     }
 }

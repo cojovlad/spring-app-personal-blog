@@ -6,6 +6,7 @@ import com.example.spring_app_personal_blog.entity.User;
 import com.example.spring_app_personal_blog.service.ArticleService;
 import com.example.spring_app_personal_blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,15 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private ArticleService articleService;
+
+    private final ArticleService articleService;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public AdminController(ArticleService articleServiceInjection, UserService userServiceInjection) {
+        articleService = articleServiceInjection;
+        userService = userServiceInjection;
+    }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
@@ -58,6 +63,4 @@ public class AdminController {
         articleService.deleteArticle(id);
         return "redirect:/admin/dashboard";
     }
-
 }
-

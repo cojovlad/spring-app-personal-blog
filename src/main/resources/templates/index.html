@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>My Blog</title>
 </head>
 <body>
 <h1>Welcome to My Blog</h1>
 
+<!-- Looping through all articles -->
 <div th:each="article : ${articles}">
-    <h2><a th:href="@{/articles/{id}(id=${article.id})}" th:text="${article.title}"></a></h2>
+    <h2>
+        <a th:href="@{/view/articles/{id}(id=${article.id})}" th:text="${article.title}"></a>
+    </h2>
     <p th:text="${#strings.abbreviate(article.content, 200)}"></p>
-    <p>By <span th:text="${article.author.username}"></span></p>
     <hr>
 </div>
 
