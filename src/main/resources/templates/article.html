@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${article.title}"></title>
 </head>
 <body>
-
+<h1 th:text="${article.title}"></h1>
+<p>By <span th:text="${article.author.username}"></span></p>
+<p th:text="${article.content}"></p>
+<a href="/">Back to Homepage</a>
 </body>
 </html>

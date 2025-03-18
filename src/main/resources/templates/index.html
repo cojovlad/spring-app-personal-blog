@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Blog</title>
 </head>
 <body>
+<h1>Welcome to My Blog</h1>
 
+<div th:each="article : ${articles}">
+    <h2><a th:href="@{/articles/{id}(id=${article.id})}" th:text="${article.title}"></a></h2>
+    <p th:text="${#strings.abbreviate(article.content, 200)}"></p>
+    <p>By <span th:text="${article.author.username}"></span></p>
+    <hr>
+</div>
+
+<a href="/login">Admin Login</a>
 </body>
 </html>

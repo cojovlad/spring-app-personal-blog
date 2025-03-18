@@ -5,6 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<h2>Admin Dashboard</h2>
+<a href="/admin/add">Add Article</a>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="article : ${articles}">
+        <td th:text="${article.title}"></td>
+        <td>
+            <a th:href="@{/admin/edit/{id}(id=${article.id})}">Edit</a>
+            <form th:action="@{/admin/delete/{id}(id=${article.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
