@@ -1,5 +1,6 @@
 package com.example.spring_app_personal_blog.controller;
 
+import com.example.spring_app_personal_blog.dto.ArticleDTO;
 import com.example.spring_app_personal_blog.entity.Article;
 import com.example.spring_app_personal_blog.service.ArticleService;
 import lombok.RequiredArgsConstructor;

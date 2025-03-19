@@ -15,6 +15,13 @@
     <hr>
 </div>
 
-<a href="/login">Admin Login</a>
+<!-- Conditional Admin Login Link -->
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <a th:href="@{/admin/dashboard}">Go to Dashboard</a>
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <a href="/login">Admin Login</a>
+</div>
+
 </body>
 </html>

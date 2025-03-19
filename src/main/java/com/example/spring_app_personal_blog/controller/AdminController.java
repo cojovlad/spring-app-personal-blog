@@ -48,6 +48,7 @@ public class AdminController {
     @GetMapping("/edit/{id}")
     public String editArticleForm(@PathVariable Long id, Model model) {
         Article article = articleService.getArticleById(id).orElseThrow();
+        model.addAttribute("article", article); // Pass the article object
         model.addAttribute("articleDTO", new ArticleDTO(article.getTitle(), article.getContent()));
         return "edit_article";
     }
