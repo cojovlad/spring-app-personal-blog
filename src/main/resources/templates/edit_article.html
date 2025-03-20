@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Article</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<form th:action="@{/admin/edit/{id}(id=${article.id})}" method="post">
-    <input type="text" name="title" th:value="${article.title}" required>
-    <textarea name="content" th:text="${article.content}" required></textarea>
-    <button type="submit">Update</button>
-</form>
-
+<div class="container">
+    <h2>Edit Article</h2>
+    <form th:action="@{/admin/edit/{id}(id=${article.id})}" method="post" class="centered-form">
+        <input type="text" name="title" th:value="${article.title}" placeholder="Title" required>
+        <textarea name="content" th:text="${article.content}" placeholder="Content" required></textarea>
+        <button type="submit">Update</button>
+    </form>
+</div>
 </body>
 </html>

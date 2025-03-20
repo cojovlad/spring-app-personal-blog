@@ -36,6 +36,14 @@ CREATE TABLE IF NOT EXISTS article (
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
     );
 
+-- 7. Create 'persistent_logins' table
+CREATE TABLE persistent_logins (
+                                   username VARCHAR(64) NOT NULL,
+                                   series VARCHAR(64) PRIMARY KEY,
+                                   token VARCHAR(64) NOT NULL,
+                                   last_used TIMESTAMP NOT NULL
+);
+
 -- Optional: Insert initial data (for testing/admin)
 -- Insert roles if not already added
 INSERT INTO role (name) VALUES ('ROLE_ADMIN') ON DUPLICATE KEY UPDATE id=id;
@@ -64,14 +72,8 @@ FROM user u
 WHERE u.username = 'normaluser';
 
 -- Insert articles for testing
-INSERT INTO article (title, content, user_id)
-VALUES
-    ('First Article', 'This is the content of the first article. It explains how to start a blog with Spring Boot.', 1),  -- Admin user
-    ('Second Article', 'This article discusses advanced Spring Boot concepts for blogging applications.', 1),  -- Admin user
-    ('Third Article', 'A quick guide to deploying Spring Boot applications on cloud platforms.', 3),  -- Normal user
-    ('Fourth Article', 'How to implement RESTful APIs with Spring Boot and Thymeleaf for a blog platform.', 3),  -- Normal user
-    ('Fifth Article', 'This article provides tips on optimizing your Spring Boot application for performance.', 1);  -- Admin user
--- Admin user
-
-
-
+INSERT INTO article (title, content, published_at, user_id) VALUES
+                                                                ('Introduction to Spring Boot', 'Spring Boot makes it easy to create stand-alone applications.', NOW(), 1),
+                                                                ('Understanding JPA in Spring', 'JPA simplifies database interactions in Spring applications.', NOW(), 1),
+                                                                ('REST API Design Best Practices', 'Learn about designing scalable RESTful APIs.', NOW(), 3),
+                                                                ('Spring Security Basics', 'An introduction to securing your Spring Boot application.', NOW(), 3);

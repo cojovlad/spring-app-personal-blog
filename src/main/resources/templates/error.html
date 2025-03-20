@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h2>Error</h2>
-<p th:text="${errorMessage}"></p>
-<a href="/">Go back home</a>
+<div class="container">
+    <h2>Error</h2>
+    <p class="error" th:text="${errorMessage}"></p>
+    <a href="/"><button>Go back home</button></a>
+</div>
 </body>
 </html>

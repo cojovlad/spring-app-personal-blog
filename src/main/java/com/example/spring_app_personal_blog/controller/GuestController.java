@@ -8,24 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-
 @Controller
-public class HomeController {
+public class GuestController {
 
     private final ArticleService articleService;
 
     @Autowired
-    public HomeController(ArticleService articleServiceInjection) {
+    public GuestController(ArticleService articleServiceInjection) {
         articleService = articleServiceInjection;
     }
 
     @GetMapping("/")
     public String showHomePage(Model model) {
-        model.addAttribute("articles",  articleService.getAllArticles());
+        model.addAttribute("articles", articleService.getAllArticles());
         return "index";
     }
-
 
     @GetMapping("/view/articles/{id}")
     public String viewArticle(@PathVariable Long id, Model model) {

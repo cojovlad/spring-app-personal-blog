@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -16,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/articles/**", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll() // Public endpoints
+                        .requestMatchers("/", "/view/articles/**", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll() // Public endpoints
                         .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN") // Restrict admin endpoints to ADMIN role
                         .anyRequest().authenticated() // All other endpoints require authentication
                 )
@@ -37,7 +35,7 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID", "remember-me") // Delete cookies on logout
                         .permitAll()
                 )
-                .csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity (enable in production with proper configuration)
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }

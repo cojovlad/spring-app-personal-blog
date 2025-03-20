@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Welcome to My Blog</h1>
+<div class="container">
+    <h1>Welcome to My Blog</h1>
 
-<!-- Looping through all articles -->
-<div th:each="article : ${articles}">
-    <h2>
-        <a th:href="@{/view/articles/{id}(id=${article.id})}" th:text="${article.title}"></a>
-    </h2>
-    <p th:text="${#strings.abbreviate(article.content, 200)}"></p>
-    <hr>
-</div>
+    <div th:each="article : ${articles}" class="article">
+        <h2>
+            <a th:href="@{/view/articles/{id}(id=${article.id})}" th:text="${article.title}"></a>
+        </h2>
+        <p th:text="${#strings.abbreviate(article.content, 200)}"></p>
+        <hr>
+    </div>
 
-<!-- Conditional Admin Login Link -->
-<div th:if="${#authorization.expression('isAuthenticated()')}">
-    <a th:href="@{/admin/dashboard}">Go to Dashboard</a>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a th:href="@{/admin/dashboard}"><button>Go to Dashboard</button></a>
+    </div>
+    <div th:unless="${#authorization.expression('isAuthenticated()')}">
+        <a href="/login"><button>Admin Login</button></a>
+    </div>
 </div>
-<div th:unless="${#authorization.expression('isAuthenticated()')}">
-    <a href="/login">Admin Login</a>
-</div>
-
 </body>
 </html>

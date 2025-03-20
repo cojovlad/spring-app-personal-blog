@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${article.title}"></title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h1 th:text="${article.title}"></h1>
-<p th:text="${article.content}"></p>
-<a href="/">Back to Homepage</a>
+<div class="container">
+    <h1 th:text="${article.title}"></h1>
+    <p th:text="${article.content}"></p>
+    <a href="/">Back to Homepage</a>
+</div>
 </body>
 </html>

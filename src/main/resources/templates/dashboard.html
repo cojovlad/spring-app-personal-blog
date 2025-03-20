@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h2>Admin Dashboard</h2>
-<a href="/admin/add">Add Article</a>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Actions</th>
-    </tr>
-    <tr th:each="article : ${articles}">
-        <td th:text="${article.title}"></td>
-        <td>
-            <a th:href="@{/admin/edit/{id}(id=${article.id})}">Edit</a>
-            <form th:action="@{/admin/delete/{id}(id=${article.id})}" method="post">
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-</table>
-<a href="/">Go back home</a>
+<div class="container">
+    <h2>Admin Dashboard</h2>
+    <a href="/admin/add"><button>Add Article</button></a>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="article : ${articles}">
+            <td th:text="${article.title}"></td>
+            <td class="dashboard-actions">
+                <a th:href="@{/admin/edit/{id}(id=${article.id})}">
+                    <button class="action-button">Edit</button>
+                </a>
+                <form th:action="@{/admin/delete/{id}(id=${article.id})}" method="post">
+                    <button type="submit" class="action-button">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/"><button>Go back home</button></a>
+</div>
 </body>
 </html>

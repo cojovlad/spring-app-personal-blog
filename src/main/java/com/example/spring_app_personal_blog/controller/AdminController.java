@@ -6,7 +6,6 @@ import com.example.spring_app_personal_blog.entity.User;
 import com.example.spring_app_personal_blog.service.ArticleService;
 import com.example.spring_app_personal_blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +47,7 @@ public class AdminController {
     @GetMapping("/edit/{id}")
     public String editArticleForm(@PathVariable Long id, Model model) {
         Article article = articleService.getArticleById(id).orElseThrow();
-        model.addAttribute("article", article); // Pass the article object
+        model.addAttribute("article", article);
         model.addAttribute("articleDTO", new ArticleDTO(article.getTitle(), article.getContent()));
         return "edit_article";
     }
