@@ -72,8 +72,24 @@ FROM user u
 WHERE u.username = 'normaluser';
 
 -- Insert articles for testing
+-- Insert articles for testing
 INSERT INTO article (title, content, published_at, user_id) VALUES
-                                                                ('Introduction to Spring Boot', 'Spring Boot makes it easy to create stand-alone applications.', NOW(), 1),
-                                                                ('Understanding JPA in Spring', 'JPA simplifies database interactions in Spring applications.', NOW(), 1),
-                                                                ('REST API Design Best Practices', 'Learn about designing scalable RESTful APIs.', NOW(), 3),
-                                                                ('Spring Security Basics', 'An introduction to securing your Spring Boot application.', NOW(), 3);
+                                                                ('Introduction to Spring Boot',
+                                                                 'Spring Boot makes it easy to create stand-alone applications.',
+                                                                 NOW(),
+                                                                 1), -- admin
+
+                                                                ('Understanding JPA in Spring',
+                                                                 'JPA simplifies database interactions in Spring applications.',
+                                                                 NOW(),
+                                                                 1), -- admin
+
+                                                                ('REST API Design Best Practices',
+                                                                 'Learn about designing scalable RESTful APIs.',
+                                                                 NOW(),
+                                                                 2), -- normaluser
+
+                                                                ('Spring Security Basics',
+                                                                 'An introduction to securing your Spring Boot application.',
+                                                                 NOW(),
+                                                                 2); -- normaluser
